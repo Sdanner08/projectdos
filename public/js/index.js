@@ -2,7 +2,19 @@
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
+var $submitIngre = $("submitIngre");
 var $exampleList = $("#example-list");
+
+// adds ingredent to the table for that recipe
+var handleIngredentClick = function() {
+  var idToDelete = $(this)
+    .parent()
+    .attr("data-id");
+
+  API.deleteExample(idToDelete).then(function() {
+    refreshExamples();
+  });
+};
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -95,5 +107,6 @@ var handleDeleteBtnClick = function() {
 };
 
 // Add event listeners to the submit and delete buttons
+$submitIngre.on("click", handleIngredentClick);
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
