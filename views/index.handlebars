@@ -4,7 +4,7 @@
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
         <h2>Recipes</h2>
-        <form class="clearfix mb-4" action="POST">
+        <form class="clearfix mb-4" method="POST" action="" id="formsub">
           <div class="form-group">
             <label for="example-text">Recipe Name</label>
             <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Recipe Name">
@@ -14,50 +14,10 @@
             <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Recipe Description"></textarea>
           </div>
 <div>
-          		<!-- Reciepe -->
-		<div class="panel panel-primary">
-		  		<!-- Default panel contents -->
-			  <div class="panel-heading">Ingredents List</div>
-			  <div class="panel-body">
-		  	  </div>
-			  <!-- Table -->
-			  <table class="table">
-			    <tr>
-			    	<th>Item</th>
-			    	<th>Quanity</th>
-			    	<th>Mesurement</th>
-			    	<th>Cost $</th>	
-			    </tr>
-			  </table>
-		</div>
-		
-		<!-- Ingredent Input -->	  
-	  	<div id="input" class="panel panel-primary">
-		  <div class="panel-heading">Add Ingredent</div>
-		  <div class="panel-body">
-			    <div class="form-group">
-	    			<label id="exampleInputEmail1">Ingredent</label>
-	    			<input type="email" class="form-control" id="ingredentName" placeholder="Tomato">
-	 			</div>
-	 			<div class="form-group">
-	    			<label id="exampleInputEmail1">Quanity</label>
-	    			<input type="email" class="form-control" id="quanity" placeholder="5">
-	 			</div>
-	 			<div class="form-group">
-	    			<label id="exampleInputEmail1">Mesurement</label>
-	    			<input type="email" class="form-control" id="amount" placeholder="Cup/oz/Gallons">
-	 			</div>
-	 			<div class="form-group">
-	    			<label id="exampleInputEmail1">Cost 0.00 format</label>
-	    			<input type="email" class="form-control" id="price" placeholder="1.00">
-	 			</div>
-	 			<button type="submut" class="btn btn-primary" id='submitIngre'>Submit</button>
-		  </div>
-	 	</div>
-</div>
+        
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
-        <h3>Examples:</h3>
+        <h3>Recipe Cards:</h3>
         <ul id="example-list" class="list-group">
           {{#each examples}}
           <li data-id="{{this.id}}" class="list-group-item">

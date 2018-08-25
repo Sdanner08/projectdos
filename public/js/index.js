@@ -1,20 +1,8 @@
 // Get references to page elements
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $submitIngre = $("submitIngre");
+//var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
-
-// adds ingredent to the table for that recipe
-var handleIngredentClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
-
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
-  });
-};
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -25,7 +13,7 @@ var API = {
       },
       type: "POST",
       url: "api/examples",
-      data: JSON.stringify(example)
+      data: JSON.stringify(example, ing1)
     });
   },
   getExamples: function() {
@@ -94,6 +82,25 @@ var handleFormSubmit = function(event) {
   $exampleDescription.val("");
 };
 
+//handles ingredent submittion
+var handleIngeSubmit = function(event) {
+  event.preventDefault();
+  var ingredent = {
+    text: $ingredentText.val().trim()
+  };
+
+  if (!ingredent.text) {
+    alert("You must enter an example text and description!");
+    return;
+  }
+
+  API.saveIngredent(ingredent).then(function() {
+    refreshIngredents();
+  });
+
+  $ingredentText.val("");
+};
+
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
 var handleDeleteBtnClick = function() {
@@ -107,6 +114,7 @@ var handleDeleteBtnClick = function() {
 };
 
 // Add event listeners to the submit and delete buttons
-$submitIngre.on("click", handleIngredentClick);
-$submitBtn.on("click", handleFormSubmit);
+$("#subIng").on("click", handleIngeSubmit);
+//$submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
+$("#formsub").on("submit", handleFormSubmit);
