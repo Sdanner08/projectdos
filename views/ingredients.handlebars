@@ -1,0 +1,62 @@
+<div id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 offset-2">
+        <h1>{{msg}}</h1>
+        <h2>Recipe Ingredient</h2>
+
+<form class="clearfix mb-4" method="POST" action="" id="subIng">
+  <div class="form-group">
+    <label for="ingredient-text">Ingredient</label>
+    <input type="text" id="ingredient-text" class="form-control" aria-describedby="ingredient-text" placeholder="Ingredient">
+  </div>
+<div>
+
+<table id="ingredientCard" class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Quanity</th>
+          <th scope="col">Mesurement</th>
+          <th scope="col">Cost 0.00 format</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td><input type="text" id="quanity" placeholder="5"></td>
+          <td><div class="form-group">
+            <select class="form-control" id="ingredientFormControlSelect1">
+            <option>oz</option>
+            <option>cups</option>
+            <option>pounds</option>
+            <option>litters</option>
+            <option>gallons</option>
+            </select>
+            </div></td>  
+          <td><input type="text" id="price" placeholder="1.00"></td>
+        </tr>
+        <tr>
+    </table>
+
+
+  <button id="submit" class="btn btn-primary float-right">Submit</button>
+</form>
+
+
+        <h3>Ingredient Cards:</h3>
+        <ul id="ingredient-list" class="list-group">
+          {{#each ingredients}}
+          <li data-id="{{this.id}}" class="list-group-item">
+            <a href="ingredients/{{this.id}}">{{this.text}}</a>
+            <button class="btn btn-danger float-right delete">ｘ</button>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/ingredient.js"></script>

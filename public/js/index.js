@@ -1,7 +1,7 @@
 // Get references to page elements
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
-//var $submitBtn = $("#submit");
+var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 
 // The API object contains methods for each kind of request we'll make
@@ -13,7 +13,7 @@ var API = {
       },
       type: "POST",
       url: "api/examples",
-      data: JSON.stringify(example, ing1)
+      data: JSON.stringify(example)
     });
   },
   getExamples: function() {
@@ -63,12 +63,17 @@ var refreshExamples = function() {
 // Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
+  var ingAdd = [];
+  $(".addItem:checked").each(function() {
+    ingAdd.push($(this).val());
+  });
 
   var example = {
     text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
+    description: $exampleDescription.val().trim(),
+    ingredients: ingAdd
   };
-
+  console.log(ingAdd);
   if (!(example.text && example.description)) {
     alert("You must enter an example text and description!");
     return;
@@ -80,25 +85,6 @@ var handleFormSubmit = function(event) {
 
   $exampleText.val("");
   $exampleDescription.val("");
-};
-
-//handles ingredent submittion
-var handleIngeSubmit = function(event) {
-  event.preventDefault();
-  var ingredent = {
-    text: $ingredentText.val().trim()
-  };
-
-  if (!ingredent.text) {
-    alert("You must enter an example text and description!");
-    return;
-  }
-
-  API.saveIngredent(ingredent).then(function() {
-    refreshIngredents();
-  });
-
-  $ingredentText.val("");
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
@@ -114,7 +100,5 @@ var handleDeleteBtnClick = function() {
 };
 
 // Add event listeners to the submit and delete buttons
-$("#subIng").on("click", handleIngeSubmit);
-//$submitBtn.on("click", handleFormSubmit);
+$submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
-$("#formsub").on("submit", handleFormSubmit);

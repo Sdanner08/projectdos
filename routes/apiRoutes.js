@@ -11,6 +11,8 @@ module.exports = function(app) {
   // Create a new example
   app.post("/api/examples", function(req, res) {
     db.Example.create(req.body).then(function(dbExample) {
+      console.log(dbExample.id);
+      console.log(req.body.ingredients);
       res.json(dbExample);
     });
   });
@@ -21,6 +23,28 @@ module.exports = function(app) {
       dbExample
     ) {
       res.json(dbExample);
+    });
+  });
+  ///////////////////////////////////////////////////
+  app.get("/api/ingredients", function(req, res) {
+    db.Ingredients.findAll({}).then(function(dbIngredients) {
+      res.json(dbIngredients);
+    });
+  });
+
+  // Create a new example
+  app.post("/api/ingredients", function(req, res) {
+    db.Ingredients.create(req.body).then(function(dbIngredients) {
+      res.json(dbIngredients);
+    });
+  });
+
+  // Delete an example by id
+  app.delete("/api/ingredients/:id", function(req, res) {
+    db.Ingredients.destroy({ where: { id: req.params.id } }).then(function(
+      dbIngredients
+    ) {
+      res.json(dbIngredients);
     });
   });
 };
