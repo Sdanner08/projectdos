@@ -1,3 +1,18 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+body{
+  background-image: url(https://static.mycity.travel/manage/uploads/6/33/20026/f706b5e0839d6ec619b13ecfe60073d882bb4fc6_2000.jpg);
+  color: white;
+}
+
+.card-body, .list-group-item{
+  background-color: black;
+  color: white;
+}
+
+#example-text, #example-description, #ingredient-text, #ingredientFormControlSelect1, #price, #quanity{
+  background-color: white;
+  color: black;
+}

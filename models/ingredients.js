@@ -6,8 +6,6 @@ module.exports = function(sequelize, DataTypes) {
     price: DataTypes.INTEGER
   });
   Ingredients.associate = function(models) {
-    // Associating Author with Posts
-    // When an Author is deleted, also delete any associated Posts
     Ingredients.belongsToMany(models.Example, {
       through: models.RecipeIngredient
     });
